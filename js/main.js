@@ -4,7 +4,7 @@ if (localStorage.length === 0) {
 
 }
 else {
-    var notes_list = JSON.parse(localStorage.getItem('notes_list_local'))
+    var notes_list = JSON.parse(localStorage.getItem('notes_list_local'));
 
 }
 function local_storage_update() {
@@ -12,7 +12,6 @@ function local_storage_update() {
 
 }
 var widget_content = document.querySelector('.widget_content');
-console.log(widget_content)
 add_notes_to_list()
 
 let scroll = document.querySelector('.scroll');
@@ -74,12 +73,12 @@ scroll.addEventListener('scroll', function (event) {
 // clear all notes start []==0
 let clear_all = document.getElementById('clear_all');
 clear_all.onclick = function () {
-    localStorage.clear();
     add_delay_all_notes();
 
     let x_time = 1;
     var note_items = document.querySelectorAll('.note_item');
     note_items.forEach(item => {
+        console.log('ok');
         // item.style.transition = `${1 * x_time}s`;
         item.style.transform = `translateY(${1000 * x_time}%) rotate(55deg)`;
         item.style.opacity = '0.2'
@@ -96,9 +95,10 @@ clear_all.onclick = function () {
     notes_list = [];
 
     note_items = [];
+    localStorage.clear();
+
     // see_if_no_items();
     no_items_to_list();
-    // make the local strage empty
 
 }
 
@@ -244,11 +244,11 @@ function add_note_ok_func() {
 
 }
 // add notes to vue
+
 function add_notes_to_list() {
     widget_content.innerHTML = ''
     let id_num = 1; // to seperate ids of check boxs
-
-    notes_list.forEach(note => {
+    notes_list.forEach((note, index) => {
         var the_new_note_item = `
 
 
@@ -285,11 +285,18 @@ function add_notes_to_list() {
 
         widget_content.appendChild(new_div);
         //  make the ceck bbox like note list (fix a bug in the creation of the input)
-        document.getElementById(id_num).checked = note.is_done
+        document.getElementById(id_num).checked = note.is_done;
         id_num++;
-        // document.querySelectorAll('.note_title')
-        // note_title
-        note_done()
+
+        note_done();
+        let note_title_ss = document.querySelectorAll('.note_title');
+        //  add line throw the title when creating the ui
+        if (note.is_done == true) {
+            // is_checked_items.push(index);
+            note_title_ss[index].style.textDecoration = 'line-through';
+
+
+        }
 
 
 
@@ -375,7 +382,6 @@ function add_line_throw(yes_or_no, title) {
 function note_done() {
     let note_titles = document.querySelectorAll('.note_title');
     let inp_check = document.querySelectorAll('.inp_check');
-    console.log(inp_check)
     inp_check.forEach((check_box, index) => {
 
         check_box.onchange = function (ch) {
@@ -383,7 +389,6 @@ function note_done() {
                 notes_list[index].is_done = true;
                 local_storage_update()
 
-                console.log(notes_list[index])
                 // note_titles[index].style.textDecoration = 'line-through';
                 // note_titles[index].style.color = '#cccccc';
                 add_line_throw(1, note_titles[index])
@@ -391,7 +396,6 @@ function note_done() {
             }
             else {
                 notes_list[index].is_done = false;
-                console.log(notes_list[index])
                 local_storage_update()
                 // note_titles[index].style.textDecoration = 'none';
                 // note_titles[index].style.color = 'white';
@@ -520,7 +524,6 @@ multy_notes_ckecker.onclick = multy_note_push;
 // reset the default settings
 function rest_default_option_func() {
     body.style.backgroundImage = `url(../images/back1.jpg)`
-    console.log('reset ok');
     multy_notes_ckecker.checked = 'true';
     document.getElementById('back_url_inp').value = '';
 
