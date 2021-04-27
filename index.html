@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO do widget</title>
+    <!-- font_family start -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- font_family end -->
+
+    <!-- normalize Css start -->
+    <link rel="stylesheet" href="style/normalize.css">
+    <!-- normalize Css end -->
+
+    <!-- main style css start -->
+    <link rel="stylesheet" href="style/main.css">
+    <!-- main style css end -->
+
+
+
+</head>
+
+<body>
+    <div id="new_note_form">
+        <div class="note_form_content">
+            <header>
+                <h2>New Note</h2>
+            </header>
+            <div class="note_add_status">
+
+            </div>
+
+            <form>
+                <label>Note Title</label>
+                <input type="text" name="" id="new_note_title" placeholder="title">
+            </form>
+
+            <form>
+                <label>Note description</label>
+                <textarea name="" id="new_note_desc" cols="30" rows="10"></textarea>
+            </form>
+
+            <footer><button id="add_the_note">add to list</button>
+                <button id="exit">exit</button>
+            </footer>
+
+        </div> <!-- ./note_form_content -->
+    </div><!-- .#new_note_form -->
+
+    <div id="widget">
+        <div class="over_lay_black"></div>
+
+        <div id="no_notes_mess">
+            empty
+        </div>
+        <header>
+            <div class="container">
+                <p>TO_DO List</p>
+                <span id="widge_option_btn" class="icon icon-cog"></span>
+
+
+            </div>
+        </header>
+        <div class="widget_content scroll">
+
+        </div> <!-- ./widget_content scroll -->
+
+        <footer>
+            <div class="container">
+
+                <p><a class="link_to_me" href="https://www.facebook.com/khelil.yasserdjameledine/" target="_blank">made
+                        by me</a></p>
+
+                <span id="clear_all">clear all</span>
+
+                <div id="plus" class="icon">
+                    <span class="icon-plus-circle"></span>
+
+                </div> <!-- ./plus -->
+            </div> <!-- ./container -->
+        </footer>
+        <div class="option_form">
+            <div class="container">
+                <header>
+                    <h3>Options</h3>
+
+                </header>
+                <section class="option_content">
+                    <ul>
+                        <!-- #################### -->
+                        <!-- change back -->
+                        <li id="option_change_back">
+                            <div class="show_part">
+                                <h3>change backgound image</h3>
+                                <span class=" icon option_show_more icon-chevron-down"></span>
+                            </div> <!-- ./show_part -->
+                            <div class="hidden_part">
+                                <input type="url" name="" id="back_url_inp">
+                                <button id="change_back_inp">confirm changes</button>
+                            </div><!-- ./hidden_part -->
+
+                        </li>
+                        <!-- multy note ? -->
+
+                        <li id="multy_note_if">
+                            <div class="show_part">
+                                <h3>multy notes push option</h3>
+                                <span class="icon option_show_more icon-chevron-down"></span>
+
+
+                            </div> <!-- ./show_part -->
+                            <div class="hidden_part h_p_inline">
+                                <span id="checker_status">status: active</span>
+
+                                <form id="add_multy_note_but" note_done_but action="#">
+                                    <p>
+                                        <input checked='true' type="checkbox" id="multy_notes_ckeck" />
+                                        <label for="multy_notes_ckeck"></label>
+                                    </p>
+
+                                </form>
+                            </div><!-- ./hidden_part -->
+
+                        </li>
+                        <!-- ################################### -->
+                        <li id="option_default_options">
+                            <div class="show_part">
+                                <h3>reset default options</h3>
+                                <span class="icon option_show_more icon-chevron-down"></span>
+                            </div> <!-- ./show_part -->
+                            <div class="hidden_part ">
+                                <button id="reset_defaul_btn">reset now</button>
+                            </div><!-- ./hidden_part -->
+
+                        </li>
+                        <!-- ########################################### -->
+                    </ul>
+                </section>
+                <footer>
+                    <h3>contact me</h3>
+                    <ul id="social_media_links">
+                        <li><a href="https://www.facebook.com/khelil.yasserdjameledine/" target="_blank"><span
+                                    class="icon-facebook-square"></span></a></li>
+                        <li><a href="https://github.com/lamani79" target="_blank"><span
+                                    class="icon-github-square"></span></a></li>
+                        <li><a href="https://www.instagram.com/khalil__yasser/" target="_blank"><span
+                                    class="icon-instagram"></span></a>
+                        </li>
+
+
+                    </ul>
+                </footer>
+            </div>
+        </div> <!-- ./option form -->
+
+    </div> <!-- .#widget -->
+
+
+
+
+
+    <!-- java script files src start -->
+    <!-- <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script> -->
+
+    <script src="js/main.js"></script>
+    <!-- java script files src end -->
+
+</body>
+
+</html>

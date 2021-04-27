@@ -1,0 +1,10 @@
+{
+    "manifest_version": 2,
+    "name": "to_do list extention",
+    "version": "0.1.0",
+    "descriptin": "this is to_do list extention",
+    "browser_action": {
+        "default_title": "To_do List",
+        "default_popup": "index.html"
+    }
+}

@@ -1,0 +1,679 @@
+// start variables
+$main_font : 'Work Sans', sans-serif;
+$transition_time : 0.2s ease-in-out;
+// end variables
+// icons stuffs
+.icon{
+    cursor: pointer;
+    color: #cccccc;
+    transition: $transition_time;
+    &:hover{
+        color: white;
+    }
+    
+
+}
+
+@font-face {
+    font-family: 'icomoon';
+    src:  url('icons_fonts/icomoon.eot?xyjw5o');
+    src:  url('icons_fonts/icomoon.eot?xyjw5o#iefix') format('embedded-opentype'),
+      url('icons_fonts/icomoon.ttf?xyjw5o') format('truetype'),
+      url('icons_fonts/icomoon.woff?xyjw5o') format('woff'),
+      url('icons_fonts/icomoon.svg?xyjw5o#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+  
+  [class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-trash-o:before {
+    content: "\f014";
+    
+    font-size: 26px;
+    transform: translateY(1px);
+    
+  }
+  .icon-cog:before {
+    content: "\f013";
+  }
+  .icon-gear:before {
+    content: "\f013";
+  }
+
+  .icon-plus-circle:before {
+    content: "\f055";
+  }
+  .icon-chevron-down:before {
+    content: "\f078";
+  }
+  .icon-file_copy:before {
+    content: "\e900";
+  }
+  .icon-facebook-square:before {
+    content: "\f082";
+  }
+  .icon-github-square:before {
+    content: "\f092";
+  }
+  .icon-instagram:before {
+    content: "\f16d";
+  }
+  
+  
+// icon end
+
+html{
+    width: 400px;
+    height: 550px;
+}
+.link_to_me{
+    color: #cccccc;
+    cursor: pointer;
+    padding: 10px;
+    text-decoration: none;
+    transition: $transition_time;
+    &:hover{
+        color: white;
+    }
+}
+// Start GLobal rules
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+button{
+    cursor: pointer;
+}
+ul{
+    list-style: none;
+}
+
+body{
+    transition: 0.3s;
+    font-family: $main_font;
+
+    background-image: url(../images/back1.jpg);
+    // @media (max-width: 680px) {
+    //     background-image: url(https://i.pinimg.com/originals/20/79/03/2079033abc8314be554f9d24f562a199.jpg);
+    // }
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    display: grid;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+}
+
+.scroll{
+    /* width */
+&::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px grey;
+    box-shadow: inset 0 0 5px #13181e;
+    border-radius: 10px;
+}
+ /* Handle */
+ &::-webkit-scrollbar-thumb {
+    background: rgb(25,27,35);
+    border-radius: 5px;
+    -webkit-transition: 0.1s;
+    transition: 0.1s;
+    transition: $transition_time;
+  }
+  
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba($color: #313a46, $alpha: 0.7); 
+  }
+}
+   
+ 
+
+// End GLobal rules
+
+
+// widget start
+
+#widget{
+     position: relative;
+    
+     width: 100vw;
+     height: 100vh;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     overflow: hidden;
+
+    //  @media (max-width:770px) {
+    //      width: 90vw;
+    // }
+    #no_notes_mess{
+
+        color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        font-size: 2rem;
+        line-height: 50px;
+        visibility: visible;
+        opacity: 1;
+        transition: $transition_time;
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        //  yu  can becaus he fathe ris psition absolut too ايضا 
+    }
+
+
+
+    
+
+
+// glass effect start
+    background: rgba(32 ,31, 33 , 0.74);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    // glass effect end
+
+    h2{
+        color: white;
+    }
+    
+}
+.container{
+    margin: 0 auto;
+    padding: 20px;
+    height: 100%;
+    position: relative;
+}
+
+header{
+    text-align: center;
+    height: 50px;
+    // box-shadow: 0px 8px 14px -13px #cccccc;
+    transition: all 0.3s;
+    color: white;
+
+    #widge_option_btn{
+        position: absolute;
+        top: 15px;
+        left: 20px;
+        font-size: 20px;
+        z-index: 99999;
+    }
+}
+footer{
+    transition: all 0.3s;
+    // box-shadow: 0px -8px 14px -13px #cccccc;
+    height: 50px;
+    background: rgba(0 , 0 ,0 ,0.16);
+    color: rgb(182, 182, 182);
+    .container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #plus{
+        // color: #555555;
+        // color: rgb(182, 182, 182);
+        width: 30px;
+        height: 25px;
+        text-align: center;
+        .icon-plus-circle{
+            font-size: 25px;
+        }
+ 
+        // transform: scale(2);
+        // transition: $transition_time;
+        // &:hover{
+        //     color: white;
+        // }
+    }
+    #clear_all{
+        cursor: pointer;
+        transition: $transition_time;
+        padding: 10px;
+        &:hover{
+            color: white;
+        }
+    }
+
+}
+.widget_content{
+    height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    .note_item{
+        transition: 1.5s ;
+        
+        // transform: translate();
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+       
+        border-bottom: 1px solid rgba($color: #000000, $alpha: 0.5);
+
+        
+        
+    }
+}
+.show_more{
+    cursor: pointer;
+    color:rgb(182, 182, 182);
+    transform: scale(1.25) translateY(3px);
+    transition: all $transition_time;
+    &:hover{
+        color: white;
+    }
+}
+.hidden_part{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 0px;
+    transition: all 0.3s ease-in-out;
+
+    text-align: center;
+    margin-top: 20px;
+
+}
+.description{
+    color: #cccccc;
+    white-space: pre-wrap;
+    overflow-x: hidden;
+}
+.show_part{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+    // display: grid;
+    // grid-template-columns: 20px 20px 250px 20px;
+    // justify-content: space-between;
+    // align-content: center;
+    // height: 50px;
+    .note_title{
+        color: white;
+        max-width: 70%;
+        min-width: 50%;
+        text-align: center;
+    }
+    // .remove_note_but{
+    //     cursor: pointer;
+    //     color: #cccccc;
+    //     transform: scale(1.6) translateY(1px);
+    //     transition: 0.1s;
+
+    //     &:hover{
+    //         color: white;
+    //     }
+    // }
+
+}
+
+
+
+
+#new_note_form{
+    height: 90vh;
+    width: 90vw;
+    
+    // @media (max-width:500px) {
+    //     width: 95vw;
+    //     height: 70%;
+    //     top: 40%;
+    // }
+
+
+    // height: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    // width: 400px;
+    color: white;
+    z-index: 999;
+    // change it when done with styel
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+
+    // glass effect start
+    background: rgba(32 ,31, 33 , 0.74);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    // glass effect end
+    
+    .description{
+        color: #cccccc;
+    }
+    #new_note_desc{
+
+    }
+   
+
+    .note_form_content{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+
+        .note_add_status{
+            color: greenyellow;
+            font-weight: 600;
+            text-align: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: $transition_time;
+            
+        }
+        h2{
+            box-shadow: 0px 7px 9px -8px #cccccc;
+            width: 100%;
+            text-align: center;
+            padding: 5px 0px;
+        }
+        form{
+            text-align: center;
+            width: 80%;
+           
+        }
+        label{
+            margin: 10px;
+            display: block;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        input,textarea{
+            width: 80%;
+            padding: 10px;
+            outline: none;
+            background-color: rgb(29, 30, 33);
+            border: 1px solid white;
+            border-radius: 6px;
+            color: white;
+
+            
+        }
+        button{
+            width: 100px;
+            height: 50px;
+            background-color: rgb(29, 30, 33);
+            border: 1px solid white;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            transition: $transition_time;
+            &:hover{
+                background-color: #333333;
+            }
+
+        }
+        #new_note_title{
+            width: 70%;
+        }
+        #add_the_note{
+            
+        }
+        #exit{
+
+        }
+    }
+    
+
+
+
+
+
+    
+}
+
+
+
+
+.over_lay_black{
+    z-index: 9990;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba($color: #000000, $alpha: 0.6);
+    opacity: 0;
+    visibility: hidden;
+
+
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Base for label styling */
+
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+    position: absolute;
+    left: -9999px;
+}
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+    position: relative;
+    padding-left: 27px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    display: inline-block;
+    font-size: 16px;
+}
+/* checkbox aspect */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+    content: '';
+    position: absolute;
+    left: 0px; top: -5px;
+    width: 22px; height: 22px;
+    border: 2px solid #cccccc;
+    background: transparent;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+}
+/* checked mark aspect */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+    content: '✔';
+    position: absolute;
+    top: -5px; left: 5px;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #ffffff;
+    transition: all .1s;
+}
+/* checked mark aspect changes */
+[type="checkbox"]:not(:checked) + label:after {
+    opacity: 0;
+    transform: scale(0);
+}
+[type="checkbox"]:checked + label:after {
+    opacity: 1;
+    transform: scale(1);
+}
+/* disabled checkbox */
+[type="checkbox"]:disabled:not(:checked) + label:before,
+[type="checkbox"]:disabled:checked + label:before {
+    box-shadow: none;
+    border-color: #999999;
+    background-color: #dddddd;
+}
+[type="checkbox"]:disabled:checked + label:after {
+    color: #999999;
+}
+[type="checkbox"]:disabled + label {
+    color: #aaaaaa;
+}
+/* accessibility */
+[type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before {
+    border: 2px solid #cccccc;
+}
+/* hover style just for information */
+label:hover:before {
+    // transition: $transition_time;
+    border: 2px solid #888888!important;
+    background: #ffffff;}
+
+// widget done!
+
+
+
+.option_form{
+    position: absolute;
+    top: 0;
+    right: -60vw;
+    z-index: 1000;
+    height: 100vh;
+    width: 60vw;
+    transition: $transition_time;
+    z-index: 9999;
+// glass effect start
+    background: rgba(32 ,31, 33 , 0.74);
+    backdrop-filter: blur( 4px );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+// glass effect end
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .option_content{
+        color: white;
+
+        ul{
+        }
+        li{
+            height: max-content;
+            margin-bottom: 20px;
+        }
+        input{
+            width: 80%;
+            padding: 10px;
+            outline: none;
+            background-color: rgb(29, 30, 33);
+            border: 1px solid white;
+            border-radius: 6px;
+            color: white;
+        }
+        button{
+            color: white;
+            background-color: #272727;
+            border-radius: 5px;
+            width: max-content;
+            padding: 8px;
+            height: 30px;
+            margin-top: 10px;
+            transition: $transition_time;
+            border: 0px;
+            &:hover{
+                background: #424242;
+            }
+        }
+        .hidden_part{
+            max-height: 0px; // for instnte
+            overflow-y: hidden;
+            transition: $transition_time;
+        }
+        form{
+            padding: 10px;
+            padding: 10px 71px 10px 10px;
+        }
+        .h_p_inline{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #option_default_options{
+            // background-color: red;
+            .hidden_part{
+                margin-top: 5px;
+            }
+        }
+
+
+     }
+     footer{
+         text-align: center;
+         // thid id refer to an ul
+         #social_media_links{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            li{
+                margin: 10px;
+                a{
+                    padding: 10px;
+                    color: #cccccc;
+                    transition: $transition_time;
+                    &:hover{
+                        color: white;
+                    }
+                    span{
+                        font-size: 25px;
+                    }
+                }
+            }
+         }
+     }
+    
+    }
+   
