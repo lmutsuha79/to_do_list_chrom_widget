@@ -160,6 +160,24 @@ function note_status_style(staus, color, message) {
 }
 // click on add the note ok
 add_note_ok.onclick = add_note_ok_func;
+let new_note_title_inp = document.getElementById('new_note_title');
+let new_note_desc_inp = document.getElementById('new_note_desc');
+// function to allow user when click ok add new note
+function entre_press_func(event) {
+
+    if (event.keyCode === 13) {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Trigger the button element with a click
+        add_note_ok_func();
+    }
+
+}
+new_note_title_inp.addEventListener('keypress', entre_press_func);
+
+new_note_desc_inp.addEventListener('keypress', entre_press_func);
+
+
 function add_note_ok_func() {
     let new_note_title = document.getElementById('new_note_title').value;
     let new_note_desc = document.getElementById('new_note_desc').value;
@@ -188,7 +206,7 @@ function add_note_ok_func() {
 
     }
 
-    // hear
+    // make the form close after 1s if multy note seting is on
     if (multy_note == 0) {
         setTimeout(() => {
             new_note_form_style(0);
@@ -281,7 +299,12 @@ function new_note_form_style(status) {
         new_note_form.style.visibility = 'hidden';
         new_note_form.style.opacity = 0;
     }
+
+
+
 }
+
+
 plus.onclick = () => {
 
     // style of new_note form
@@ -293,7 +316,8 @@ plus.onclick = () => {
 
 //  exit from the new note form
 let exit = document.getElementById('exit');
-exit.onclick = () => {
+exit.onclick = close_new_form;
+function close_new_form() {
     // style of new_note form
     new_note_form_style(0);
     // style of over lay
@@ -391,6 +415,7 @@ let option_form = document.querySelector('.option_form');
 
 let option_is_open = 0;
 let option_but = document.getElementById('widge_option_btn');
+// open options form
 function open_option_form() {
     if (option_is_open === 0) {
         balck_over_lay(1);
@@ -410,8 +435,11 @@ function open_option_form() {
 
 
 }
-let change_back_inp = document.getElementById('change_back_inp');
+option_but.onclick = open_option_form;
 
+// ###########################################################
+// change body background img
+let change_back_inp = document.getElementById('change_back_inp');
 function change_backgound() {
     let back_url_inp = document.getElementById('back_url_inp').value;
     // let back_url_inp = document.getElementById('back_url_inp').value
@@ -422,10 +450,11 @@ function change_backgound() {
 
     // re do it with local storage
 }
-
-
-option_but.onclick = open_option_form;
 change_back_inp.onclick = change_backgound;
+
+// ###########################################################
+
+// add multy note or note:
 
 let multy_notes_ckecker = document.getElementById('multy_notes_ckeck');
 
@@ -443,7 +472,8 @@ function multy_note_push() {
     }
 }
 multy_notes_ckecker.onclick = multy_note_push;
-
+// ###########################################################
+// reset the default settings
 function rest_default_option_func() {
     body.style.backgroundImage = `url(../images/back1.jpg)`
     console.log('reset ok');
@@ -454,6 +484,8 @@ function rest_default_option_func() {
 let reset_defaul_btn = document.getElementById('reset_defaul_btn');
 
 reset_defaul_btn.onclick = rest_default_option_func;
+// ###########################################################
+
 // show more (hidden part)
 let hidden_part_all = document.querySelectorAll('.option_content .hidden_part');
 let option_more_option = []; // par default
@@ -472,6 +504,9 @@ option_show_more_btns.forEach((btn, index) => {
         }
     }
 });
+
+
+
 
 // option end
 
