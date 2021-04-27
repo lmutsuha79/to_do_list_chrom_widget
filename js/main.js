@@ -1,8 +1,30 @@
+
+if (localStorage.length === 0) {
+    var notes_list = [];
+
+}
+else {
+    var notes_list = JSON.parse(localStorage.getItem('notes_list_local'))
+
+}
+function local_storage_update() {
+    localStorage.setItem('notes_list_local', JSON.stringify(notes_list));
+
+}
+var widget_content = document.querySelector('.widget_content');
+console.log(widget_content)
+add_notes_to_list()
+
 let scroll = document.querySelector('.scroll');
 let footer = document.querySelector('#widget footer');
 let header = document.querySelector('#widget header');
 let multy_note = 1; // by default se to 1 so you can add multy notes
 let body = document.querySelector('body');
+
+
+
+
+
 
 let time_x = 0;
 // add delay to all notes 
@@ -52,6 +74,7 @@ scroll.addEventListener('scroll', function (event) {
 // clear all notes start []==0
 let clear_all = document.getElementById('clear_all');
 clear_all.onclick = function () {
+    localStorage.clear();
     add_delay_all_notes();
 
     let x_time = 1;
@@ -75,6 +98,7 @@ clear_all.onclick = function () {
     note_items = [];
     // see_if_no_items();
     no_items_to_list();
+    // make the local strage empty
 
 }
 
@@ -127,20 +151,21 @@ show_more_func(); // to call function when loading
 
 
 class Note {
-    constructor(title, discription) {
+    constructor(title, discription, is_done) {
         this.title = title;
         this.discription = discription;
+        this.is_done = false; // by default is false
 
     }
 }
 
 
 
-let add_note_ok = document.getElementById('add_the_note');
-// list of objects
-var notes_list = [];
-var note_add_status = document.querySelector('.note_add_status');
 
+let add_note_ok = document.getElementById('add_the_note');
+// list of objects (creat the note list)
+var note_add_status = document.querySelector('.note_add_status');
+// message when creating new note (red or green)
 function note_status_style(staus, color, message) {
 
 
@@ -158,11 +183,11 @@ function note_status_style(staus, color, message) {
         }, 2000);
     }
 }
-// click on add the note ok
+// click on add the note ok to add note
 add_note_ok.onclick = add_note_ok_func;
 let new_note_title_inp = document.getElementById('new_note_title');
 let new_note_desc_inp = document.getElementById('new_note_desc');
-// function to allow user when click ok add new note
+// function to allow user when click Entre add new note
 function entre_press_func(event) {
 
     if (event.keyCode === 13) {
@@ -177,7 +202,7 @@ new_note_title_inp.addEventListener('keypress', entre_press_func);
 
 new_note_desc_inp.addEventListener('keypress', entre_press_func);
 
-
+// add new note to list (back end)
 function add_note_ok_func() {
     let new_note_title = document.getElementById('new_note_title').value;
     let new_note_desc = document.getElementById('new_note_desc').value;
@@ -186,16 +211,15 @@ function add_note_ok_func() {
     } else {
         note_status_style(0, 'greenyellow', 'the note is now in the list');
 
-
-
         // add note to list of object no vue
         notes_list.push(new Note(new_note_title, `${new_note_desc != '' ? new_note_desc : 'no description'}`));
+        // update the Local Storage whith new changes (notes)
 
+        local_storage_update() // updates local storage
         add_notes_to_list(); // add notes to the vue
         show_more_func(); // to show more (description)
         note_done(); // add line throw the note when click ok check box
-        // trash_func();
-        // see_if_no_items();
+
         remove();
         no_items_to_list(); //se if there are no items in the list
         // make title field empty when creation of new note done!
@@ -218,24 +242,20 @@ function add_note_ok_func() {
 
 
 
-
 }
-var widget_content = document.querySelector('.widget_content');
 // add notes to vue
 function add_notes_to_list() {
     widget_content.innerHTML = ''
     let id_num = 1; // to seperate ids of check boxs
 
     notes_list.forEach(note => {
-
-
         var the_new_note_item = `
 
 
         <div class="show_part">
             <form note_done_but action="#">
                 <p>
-                    <input class="inp_check" type="checkbox" id="${id_num}" />
+                    <input checked='${note.is_done}' class="inp_check" type="checkbox" id="${id_num}"  />
                     <label for="${id_num}"></label>
                 </p>
 
@@ -264,7 +284,13 @@ function add_notes_to_list() {
 
 
         widget_content.appendChild(new_div);
+        //  make the ceck bbox like note list (fix a bug in the creation of the input)
+        document.getElementById(id_num).checked = note.is_done
         id_num++;
+        // document.querySelectorAll('.note_title')
+        // note_title
+        note_done()
+
 
 
     });
@@ -335,23 +361,41 @@ function close_new_form() {
 
 
 // ########################################
+function add_line_throw(yes_or_no, title) {
+    if (yes_or_no == 1) {
+        title.style.textDecoration = 'line-through';
+        title.style.color = '#cccccc';
+    } else {
+        title.style.textDecoration = 'none';
+        title.style.color = 'white';
+    }
 
+}
 // add a line throw the title note when click on the check box ;
 function note_done() {
     let note_titles = document.querySelectorAll('.note_title');
     let inp_check = document.querySelectorAll('.inp_check');
-
+    console.log(inp_check)
     inp_check.forEach((check_box, index) => {
 
         check_box.onchange = function (ch) {
             if (check_box.checked == true) {
-                note_titles[index].style.textDecoration = 'line-through';
-                note_titles[index].style.color = '#cccccc';
+                notes_list[index].is_done = true;
+                local_storage_update()
+
+                console.log(notes_list[index])
+                // note_titles[index].style.textDecoration = 'line-through';
+                // note_titles[index].style.color = '#cccccc';
+                add_line_throw(1, note_titles[index])
 
             }
             else {
-                note_titles[index].style.textDecoration = 'none';
-                note_titles[index].style.color = 'white';
+                notes_list[index].is_done = false;
+                console.log(notes_list[index])
+                local_storage_update()
+                // note_titles[index].style.textDecoration = 'none';
+                // note_titles[index].style.color = 'white';
+                add_line_throw(0, note_titles[index])
 
 
             }
@@ -382,6 +426,7 @@ function no_items_to_list() {
 }
 no_items_to_list();
 function remove() {
+    local_storage_update()
     var note_items = document.querySelectorAll('.note_item');
     var remove_note_but = document.querySelectorAll('.remove_note_but');
     remove_note_but.forEach((but, index) => {
@@ -448,7 +493,6 @@ function change_backgound() {
 
     }
 
-    // re do it with local storage
 }
 change_back_inp.onclick = change_backgound;
 
@@ -509,7 +553,6 @@ option_show_more_btns.forEach((btn, index) => {
 
 
 // option end
-
 
 
 
