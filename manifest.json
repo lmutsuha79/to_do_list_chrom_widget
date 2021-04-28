@@ -5,6 +5,16 @@
     "descriptin": "this is to_do list extention",
     "browser_action": {
         "default_title": "To_do List",
-        "default_popup": "index.html"
-    }
+        "default_popup": "popup.html"
+    },
+    "icons": {
+        "16": "images/icon.png",
+        "32": "images/icon.png",
+        "48": "images/icon.png",
+        "128": "images/icon.png"
+    },
+    "permissions": [
+        "activeTab",
+        "storage"
+    ]
 }

@@ -295,7 +295,6 @@ function add_notes_to_list() {
             // is_checked_items.push(index);
             note_title_ss[index].style.textDecoration = 'line-through';
 
-
         }
 
 
@@ -328,9 +327,13 @@ function new_note_form_style(status) {
     if (status === 1) {
         new_note_form.style.visibility = 'visible';
         new_note_form.style.opacity = 1;
+        new_note_form.style.top = '50%';
+
     } else {
         new_note_form.style.visibility = 'hidden';
         new_note_form.style.opacity = 0;
+        new_note_form.style.top = '100%';
+
     }
 
 
