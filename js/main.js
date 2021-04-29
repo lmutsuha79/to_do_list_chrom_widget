@@ -1,4 +1,5 @@
-
+// local storage start
+// creat an empty list if no data on the browser saved or call it if it existe
 if (localStorage.length === 0) {
     var notes_list = [];
 
@@ -7,12 +8,17 @@ else {
     var notes_list = JSON.parse(localStorage.getItem('notes_list_local'));
 
 }
+// update the local storage note_list avery time add or remove a item to list 
 function local_storage_update() {
     localStorage.setItem('notes_list_local', JSON.stringify(notes_list));
-
 }
+// local storage end
+// #################################################################################
+// adding the notes form local storage to the UI when page load
+// with colling a function bellow:
 var widget_content = document.querySelector('.widget_content');
 add_notes_to_list()
+// #################################################################################
 
 let scroll = document.querySelector('.scroll');
 let footer = document.querySelector('#widget footer');
@@ -26,9 +32,7 @@ let body = document.querySelector('body');
 
 
 let time_x = 0;
-// add delay to all notes 
-// var note_items = document.querySelectorAll('.note_item');
-
+// add a delay to all notes when page load (to make animation when removing items)
 function add_delay_all_notes() {
     var note_items = document.querySelectorAll('.note_item');
 
@@ -39,6 +43,7 @@ function add_delay_all_notes() {
     });
 }
 add_delay_all_notes();
+// #################################################################################
 
 
 
@@ -73,13 +78,19 @@ scroll.addEventListener('scroll', function (event) {
 // clear all notes start []==0
 let clear_all = document.getElementById('clear_all');
 clear_all.onclick = function () {
+    // re call delay function to add dellay to current items in UI
+    // not when the page load 
+    // because we can remove items or add other notes 
+    // so we have to add delay to it befor we decide to clear it 
+    // sory for the bad english;
     add_delay_all_notes();
-
-    let x_time = 1;
+    // note items is list contains all notes of ui
     var note_items = document.querySelectorAll('.note_item');
+    let x_time = 1;
+    // add style to every item in the note_itmes when clear all items
+
     note_items.forEach(item => {
         console.log('ok');
-        // item.style.transition = `${1 * x_time}s`;
         item.style.transform = `translateY(${1000 * x_time}%) rotate(55deg)`;
         item.style.opacity = '0.2'
         x_time++;
@@ -87,22 +98,19 @@ clear_all.onclick = function () {
             item.style.display = 'none';
             // remove form html
             widget_content.removeChild(item);
-
-
         }, 1500);
     });
     // delet all obj form list of notes
     notes_list = [];
 
     note_items = [];
+    // clear all items form the local storage
     localStorage.clear();
 
-    // see_if_no_items();
+    // verify if no items in Ui so show message : "no itmes yet"
+    // in this function the message will be visible surely
     no_items_to_list();
-
 }
-
-
 
 // clear all notes end
 
@@ -114,7 +122,9 @@ clear_all.onclick = function () {
 
 
 
-// show more function
+// show more function start
+// click on the litle arrow in visible part of the note 
+// to show the hidden part (description) 
 function show_more_func() {
     // show more (show the hidden part of the note 'description');
     let show_more_but = document.querySelectorAll('.show_more')
@@ -144,12 +154,14 @@ function show_more_func() {
 }
 show_more_func(); // to call function when loading
 
+// show more function end
+
 // ###################################
 
 
 
 
-
+// the Note class start
 class Note {
     constructor(title, discription, is_done) {
         this.title = title;
@@ -158,17 +170,24 @@ class Note {
 
     }
 }
+// the Note class end
+// ###################################
+
 
 
 
 
 let add_note_ok = document.getElementById('add_the_note');
 // list of objects (creat the note list)
+// ###################################
+
 var note_add_status = document.querySelector('.note_add_status');
 // message when creating new note (red or green)
+// to tell user if the note has been added successfully or not
+// note ==> if he didn't enter a title to the note at least
 function note_status_style(staus, color, message) {
-
-
+    // satus : 1=> active  0=>disible
+    // 1=> show  0=>hid
     note_add_status.textContent = message;
     note_add_status.style.color = color;
     note_add_status.style.visibility = 'visible';
@@ -183,10 +202,13 @@ function note_status_style(staus, color, message) {
         }, 2000);
     }
 }
-// click on add the note ok to add note
+// ###################################
+
+// click on add the note ok to add note in the back end (not UI)
 add_note_ok.onclick = add_note_ok_func;
 let new_note_title_inp = document.getElementById('new_note_title');
 let new_note_desc_inp = document.getElementById('new_note_desc');
+
 // function to allow user when click Entre add new note
 function entre_press_func(event) {
 
@@ -198,9 +220,10 @@ function entre_press_func(event) {
     }
 
 }
+
+// the event listener listen to enter key press on note title field
 new_note_title_inp.addEventListener('keypress', entre_press_func);
 
-// new_note_desc_inp.addEventListener('keypress', entre_press_func);
 
 // add new note to list (back end)
 function add_note_ok_func() {
@@ -211,10 +234,10 @@ function add_note_ok_func() {
     } else {
         note_status_style(0, 'greenyellow', 'the note is now in the list');
 
-        // add note to list of object no vue
+        // add note to list[] of object no vue 
         notes_list.push(new Note(new_note_title, `${new_note_desc != '' ? new_note_desc : 'no description'}`));
-        // update the Local Storage whith new changes (notes)
 
+        // update the Local Storage whith new changes (notes)
         local_storage_update() // updates local storage
         add_notes_to_list(); // add notes to the vue
         show_more_func(); // to show more (description)
@@ -243,12 +266,12 @@ function add_note_ok_func() {
 
 
 }
-// add notes to vue
-
+// add notes to vue UI
 function add_notes_to_list() {
     widget_content.innerHTML = ''
     let id_num = 1; // to seperate ids of check boxs
     notes_list.forEach((note, index) => {
+
         var the_new_note_item = `
 
 
@@ -273,32 +296,26 @@ function add_notes_to_list() {
         </div><!-- ./hidden_part -->
 
 
-
-
-
             `;
-
+        // creating div and the var (add the_new_note_item) to it
+        // then add it to html inside widget_content 
         var new_div = document.createElement("div");
         new_div.className = 'note_item';
         new_div.innerHTML = the_new_note_item;
-
-
         widget_content.appendChild(new_div);
+
         //  make the ceck bbox like note list (fix a bug in the creation of the input)
+        // note.is done ==> refer to state of obj (current note)
         document.getElementById(id_num).checked = note.is_done;
         id_num++;
+        // call function that add ligne throw the note title when click on check_box
 
         note_done();
         let note_title_ss = document.querySelectorAll('.note_title');
         //  add line throw the title when creating the ui
         if (note.is_done == true) {
-            // is_checked_items.push(index);
             note_title_ss[index].style.textDecoration = 'line-through';
-
         }
-
-
-
     });
 
 }
@@ -307,6 +324,8 @@ function add_notes_to_list() {
 
 
 // ########################################
+// balck_over_lay function start
+// add over lay to widget when open new note form
 function balck_over_lay(open_it) {
     if (open_it == 1) {
         over_lay_black.style.visibility = 'visible'
@@ -318,12 +337,18 @@ function balck_over_lay(open_it) {
     }
 
 }
+// balck_over_lay function end
+// ########################################
+
+
 let new_note_form = document.getElementById('new_note_form');
 let add_note_but = document.getElementById('plus');
 let over_lay_black = document.querySelector('.over_lay_black');
-// desplay the new_nte_form when clicking the plus but in the ui
+// new_note_form_style function start:
+
+// desplay the new_note_form when clicking the plus but in the ui
 function new_note_form_style(status) {
-    // status mean 1 == show 0 == hidde
+    // status mean:      1 == show || 0 == hid
     if (status === 1) {
         new_note_form.style.visibility = 'visible';
         new_note_form.style.opacity = 1;
@@ -339,8 +364,13 @@ function new_note_form_style(status) {
 
 
 }
+// new_note_form_style function end:
+// #########################################################
 
 
+// onclick event listener of plus but 
+// call 2 function : new_note_form_style(1) && balck_over_lay(2)
+// to disply new note form and add over lay to window:
 plus.onclick = () => {
 
     // style of new_note form
@@ -350,9 +380,13 @@ plus.onclick = () => {
 
 }
 
-//  exit from the new note form
+
+// #########################################################
+//  exit from the new note form start
 let exit = document.getElementById('exit');
 exit.onclick = close_new_form;
+// close form start :
+// and hid balc over lay 
 function close_new_form() {
     // style of new_note form
     new_note_form_style(0);
@@ -363,7 +397,7 @@ function close_new_form() {
     no_items_to_list(); //se if there are no items in the list
 }
 
-
+//  exit from the new note form end
 
 
 
@@ -371,6 +405,7 @@ function close_new_form() {
 
 
 // ########################################
+// add_line_throw note title function start
 function add_line_throw(yes_or_no, title) {
     if (yes_or_no == 1) {
         title.style.textDecoration = 'line-through';
@@ -381,7 +416,13 @@ function add_line_throw(yes_or_no, title) {
     }
 
 }
-// add a line throw the title note when click on the check box ;
+// add_line_throw note title function end
+// ########################################
+
+
+// add a line throw the title note when click on the check box and update note list
+// and local Storage  ;
+//note_done function start
 function note_done() {
     let note_titles = document.querySelectorAll('.note_title');
     let inp_check = document.querySelectorAll('.inp_check');
@@ -391,17 +432,12 @@ function note_done() {
             if (check_box.checked == true) {
                 notes_list[index].is_done = true;
                 local_storage_update()
-
-                // note_titles[index].style.textDecoration = 'line-through';
-                // note_titles[index].style.color = '#cccccc';
                 add_line_throw(1, note_titles[index])
 
             }
             else {
                 notes_list[index].is_done = false;
                 local_storage_update()
-                // note_titles[index].style.textDecoration = 'none';
-                // note_titles[index].style.color = 'white';
                 add_line_throw(0, note_titles[index])
 
 
@@ -411,13 +447,15 @@ function note_done() {
 
     });
 }
+//note_done function end
 
+//call note done function when page loading
 note_done();
 
 
 
 // ########################################
-
+// no_items_to_list function start
 var no_note_mess = document.getElementById('no_notes_mess');
 function no_items_to_list() {
     if (notes_list.length === 0) {
@@ -431,7 +469,16 @@ function no_items_to_list() {
 
 
 }
+// no_items_to_list function end
+
+// call the function when load if ther is no item to list 
+// when page load done!
 no_items_to_list();
+
+
+// ########################################
+// remove function start
+// remove an note item forom the list and ui and local storage
 function remove() {
     local_storage_update()
     var note_items = document.querySelectorAll('.note_item');
@@ -439,8 +486,6 @@ function remove() {
     remove_note_but.forEach((but, index) => {
         but.onclick = function () {
             notes_list.splice(index, 1);
-
-
 
             note_items[index].style.maxHeight = `0px`;
 
@@ -459,15 +504,18 @@ function remove() {
     });
     no_items_to_list()// se if there are no item in the list
 }
-remove();
+// remove function end
+
 
 // ######################################
-// options start
+// options start:
+// ##########################################
 let option_form = document.querySelector('.option_form');
 
 let option_is_open = 0;
 let option_but = document.getElementById('widge_option_btn');
-// open options form
+// open open_option_form()  function 
+// to show the hidden option window
 function open_option_form() {
     if (option_is_open === 0) {
         balck_over_lay(1);
@@ -487,53 +535,8 @@ function open_option_form() {
 
 
 }
+// listen for a click on the option_but button then call the function 
 option_but.onclick = open_option_form;
-
-// ###########################################################
-// change body background img
-let change_back_inp = document.getElementById('change_back_inp');
-function change_backgound() {
-    let back_url_inp = document.getElementById('back_url_inp').value;
-    // let back_url_inp = document.getElementById('back_url_inp').value
-    if (back_url_inp != '') {
-        body.style.backgroundImage = `url(${back_url_inp})`;
-
-    }
-
-}
-change_back_inp.onclick = change_backgound;
-
-// ###########################################################
-
-// add multy note or note:
-
-let multy_notes_ckecker = document.getElementById('multy_notes_ckeck');
-
-function multy_note_push() {
-    let checker_status = document.getElementById('checker_status');
-    let multy_notes_ckecker = document.getElementById('multy_notes_ckeck');
-    if (multy_notes_ckecker.checked == true) {
-        checker_status.textContent = `status: active`;
-        multy_note = 1;
-
-    } else {
-        checker_status.textContent = `status: not active`;
-        multy_note = 0;
-
-    }
-}
-multy_notes_ckecker.onclick = multy_note_push;
-// ###########################################################
-// reset the default settings
-function rest_default_option_func() {
-    body.style.backgroundImage = `url(../images/back1.jpg)`
-    multy_notes_ckecker.checked = 'true';
-    document.getElementById('back_url_inp').value = '';
-
-}
-let reset_defaul_btn = document.getElementById('reset_defaul_btn');
-
-reset_defaul_btn.onclick = rest_default_option_func;
 // ###########################################################
 
 // show more (hidden part)
@@ -555,6 +558,59 @@ option_show_more_btns.forEach((btn, index) => {
     }
 });
 
+
+// ###########################################################
+// change body background img:
+let change_back_inp = document.getElementById('change_back_inp');
+function change_backgound() {
+    let back_url_inp = document.getElementById('back_url_inp').value;
+    // let back_url_inp = document.getElementById('back_url_inp').value
+    if (back_url_inp != '') {
+        body.style.backgroundImage = `url(${back_url_inp})`;
+    }
+}
+change_back_inp.onclick = change_backgound;
+
+// ###########################################################
+
+// add multy note or note:
+// mean if (add 1 note in time and close new note form )
+// else (you can add multy note until user click close but)
+// to close the new note form
+
+let multy_notes_ckecker = document.getElementById('multy_notes_ckeck');
+
+function multy_note_push() {
+    let checker_status = document.getElementById('checker_status');
+    let multy_notes_ckecker = document.getElementById('multy_notes_ckeck');
+    if (multy_notes_ckecker.checked == true) {
+        checker_status.textContent = `status: active`;
+        multy_note = 1;
+
+    } else {
+        checker_status.textContent = `status: not active`;
+        multy_note = 0;
+
+    }
+}
+multy_notes_ckecker.onclick = multy_note_push;
+// ###########################################################
+
+
+// reset the default settings
+// mean reset all option to first state 
+function rest_default_option_func() {
+    body.style.backgroundImage = `url(../images/back1.jpg)`
+    multy_notes_ckecker.checked = 'true';
+    document.getElementById('back_url_inp').value = '';
+
+}
+let reset_defaul_btn = document.getElementById('reset_defaul_btn');
+
+reset_defaul_btn.onclick = rest_default_option_func;
+
+
+// ###########################################################
 
 
 
