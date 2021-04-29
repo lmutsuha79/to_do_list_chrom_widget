@@ -200,7 +200,7 @@ function entre_press_func(event) {
 }
 new_note_title_inp.addEventListener('keypress', entre_press_func);
 
-new_note_desc_inp.addEventListener('keypress', entre_press_func);
+// new_note_desc_inp.addEventListener('keypress', entre_press_func);
 
 // add new note to list (back end)
 function add_note_ok_func() {
