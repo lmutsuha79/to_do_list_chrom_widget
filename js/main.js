@@ -1,16 +1,52 @@
+var body = document.querySelector('body');
+// var multy_note;
+
+
+
 // local storage start
 // creat an empty list if no data on the browser saved or call it if it existe
+
+
+var options = {
+    background: `url(../images/back1.jpg)`,
+    push_multy_note: 1,
+    reset_defaul_options() {
+        this.background = `url(../images/back1.jpg)`;
+        this.push_multy_note = 1;
+    },
+}
+console.log(options)
+
 if (localStorage.length === 0) {
+    // no local storage so:
     var notes_list = [];
+    // creat local storage when add a note with local_storage_update()
 
 }
+
 else {
+    // there is a local Storage data:
     var notes_list = JSON.parse(localStorage.getItem('notes_list_local'));
+    var local_storage_options = JSON.parse(localStorage.getItem('options_list_local'));
+
+    options.background = local_storage_options.background;
+    options.push_multy_note = local_storage_options.push_multy_note;
 
 }
+first_style();
+
+
+
 // update the local storage note_list avery time add or remove a item to list 
+function local_storage_options_update() {
+    // because local storage acsepte sof strings;
+    localStorage.setItem('options_list_local', JSON.stringify(options));
+}
+local_storage_options_update();
 function local_storage_update() {
+    // because local storage acsepte sof strings;
     localStorage.setItem('notes_list_local', JSON.stringify(notes_list));
+
 }
 // local storage end
 // #################################################################################
@@ -23,8 +59,7 @@ add_notes_to_list()
 let scroll = document.querySelector('.scroll');
 let footer = document.querySelector('#widget footer');
 let header = document.querySelector('#widget header');
-let multy_note = 1; // by default se to 1 so you can add multy notes
-let body = document.querySelector('body');
+
 
 
 
@@ -100,12 +135,14 @@ clear_all.onclick = function () {
             widget_content.removeChild(item);
         }, 1500);
     });
+
     // delet all obj form list of notes
     notes_list = [];
 
     note_items = [];
     // clear all items form the local storage
-    localStorage.clear();
+    // localStorage.clear();
+    local_storage_update();
 
     // verify if no items in Ui so show message : "no itmes yet"
     // in this function the message will be visible surely
@@ -254,7 +291,9 @@ function add_note_ok_func() {
     }
 
     // make the form close after 1s if multy note seting is on
-    if (multy_note == 0) {
+    // multy_note commes by default with the function:
+    // first style()    
+    if (options.push_multy_note == 0) {
         setTimeout(() => {
             new_note_form_style(0);
             balck_over_lay(0);
@@ -511,9 +550,23 @@ function remove() {
 //so you need to call it
 remove();
 
+
+
 // ######################################
 // options start:
 // ##########################################
+// options when load page:
+// this is the options style that applied when the page load
+function first_style() {
+    body.style.backgroundImage = `url(${options.background})`;
+    document.getElementById('multy_notes_ckeck').checked = options.push_multy_note;
+
+
+}
+
+// ##########################################
+
+
 let option_form = document.querySelector('.option_form');
 
 let option_is_open = 0;
@@ -523,14 +576,14 @@ let option_but = document.getElementById('widge_option_btn');
 function open_option_form() {
     if (option_is_open === 0) {
         balck_over_lay(1);
-        option_form.style.right = '0px'
-        option_but.style.transform = 'rotate(-90deg)'
+        option_form.style.right = '0px';
+        option_but.style.transform = 'rotate(-90deg)';
         option_is_open = 1;
 
     } else {
         balck_over_lay(0);
-        option_form.style.right = '-60vw'
-        option_but.style.transform = 'rotate(90deg)'
+        option_form.style.right = '-60vw';
+        option_but.style.transform = 'rotate(90deg)';
 
         option_is_open = 0;
 
@@ -565,13 +618,16 @@ option_show_more_btns.forEach((btn, index) => {
 
 // ###########################################################
 // change body background img:
-let change_back_inp = document.getElementById('change_back_inp');
+var change_back_inp = document.getElementById('change_back_inp');
 function change_backgound() {
     let back_url_inp = document.getElementById('back_url_inp').value;
-    // let back_url_inp = document.getElementById('back_url_inp').value
     if (back_url_inp != '') {
         body.style.backgroundImage = `url(${back_url_inp})`;
+        options.background = back_url_inp;
+        local_storage_options_update();
     }
+
+
 }
 change_back_inp.onclick = change_backgound;
 
@@ -589,13 +645,15 @@ function multy_note_push() {
     let multy_notes_ckecker = document.getElementById('multy_notes_ckeck');
     if (multy_notes_ckecker.checked == true) {
         checker_status.textContent = `status: active`;
-        multy_note = 1;
+        options.push_multy_note = 1;
 
     } else {
         checker_status.textContent = `status: not active`;
-        multy_note = 0;
+        options.push_multy_note = 0;
 
     }
+    local_storage_options_update();
+
 }
 multy_notes_ckecker.onclick = multy_note_push;
 // ###########################################################
@@ -607,6 +665,9 @@ function rest_default_option_func() {
     body.style.backgroundImage = `url(../images/back1.jpg)`
     multy_notes_ckecker.checked = 'true';
     document.getElementById('back_url_inp').value = '';
+    options.reset_defaul_options();
+    local_storage_options_update();
+
 
 }
 let reset_defaul_btn = document.getElementById('reset_defaul_btn');
@@ -622,15 +683,6 @@ reset_defaul_btn.onclick = rest_default_option_func;
 
 
 
-
-obj2 = {
-    name: 'yasesr',
-    age: 18,
-    birth: 2002,
-};
-const { name, age, birth } = obj2;
-console.log(name, age, birth);
-console.log(obj2.name, obj2.age, obj2.birth);
 
 
 
