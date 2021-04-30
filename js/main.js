@@ -41,8 +41,9 @@ function add_delay_all_notes() {
         time_x += 1;
 
     });
+    time_x = 0;
 }
-add_delay_all_notes();
+// add_delay_all_notes();
 // #################################################################################
 
 
@@ -90,7 +91,6 @@ clear_all.onclick = function () {
     // add style to every item in the note_itmes when clear all items
 
     note_items.forEach(item => {
-        console.log('ok');
         item.style.transform = `translateY(${1000 * x_time}%) rotate(55deg)`;
         item.style.opacity = '0.2'
         x_time++;
@@ -242,9 +242,9 @@ function add_note_ok_func() {
         add_notes_to_list(); // add notes to the vue
         show_more_func(); // to show more (description)
         note_done(); // add line throw the note when click ok check box
-
-        remove();
+        remove(); // to add remove event to new notes and allow to remove it with same function
         no_items_to_list(); //se if there are no items in the list
+
         // make title field empty when creation of new note done!
         document.getElementById('new_note_title').value = '';
 
@@ -488,6 +488,8 @@ function remove() {
             notes_list.splice(index, 1);
 
             note_items[index].style.maxHeight = `0px`;
+            note_items[index].style.padding = `0px`;
+
 
             note_items[index].style.transform = ` rotate(15deg) translate(20px,100vh)`;
             note_items[index].style.opacity = `0`;
@@ -495,7 +497,7 @@ function remove() {
             setTimeout(() => {
                 widget_content.removeChild(note_items[index]);
                 remove();
-            }, 300);
+            }, 1000);
 
             // recall the func to re set index s 
             remove();
@@ -505,7 +507,9 @@ function remove() {
     no_items_to_list()// se if there are no item in the list
 }
 // remove function end
-
+// call the function because the function add event listenr to remove but
+//so you need to call it
+remove();
 
 // ######################################
 // options start:
@@ -619,8 +623,14 @@ reset_defaul_btn.onclick = rest_default_option_func;
 
 
 
-
-
+obj2 = {
+    name: 'yasesr',
+    age: 18,
+    birth: 2002,
+};
+const { name, age, birth } = obj2;
+console.log(name, age, birth);
+console.log(obj2.name, obj2.age, obj2.birth);
 
 
 

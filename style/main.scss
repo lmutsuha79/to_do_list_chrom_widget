@@ -275,9 +275,10 @@ footer{
     overflow-y: scroll;
     overflow-x: hidden;
     .note_item{
-        transition: 1.5s ;
+        transition: 0.7s ;
         
         // transform: translate();
+        max-height: 100px;
         padding: 20px;
         display: flex;
         flex-direction: column;

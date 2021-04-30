@@ -274,8 +274,9 @@ footer #clear_all:hover {
 }
 
 .widget_content .note_item {
-  -webkit-transition: 1.5s;
-  transition: 1.5s;
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
+  max-height: 100px;
   padding: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
