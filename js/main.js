@@ -266,9 +266,8 @@ new_note_title_inp.addEventListener('keypress', entre_press_func);
 function add_note_ok_func() {
     let new_note_title = document.getElementById('new_note_title').value;
     let new_note_desc = document.getElementById('new_note_desc').value;
-    if (new_note_title == '') {
-        note_status_style(1, 'red', 'you must add the title at least');
-    } else {
+    if (/\S/.test(new_note_title)) {
+        // string is not empty and not just whitespace
         note_status_style(0, 'greenyellow', 'the note is now in the list');
 
         // add note to list[] of object no vue 
@@ -287,7 +286,9 @@ function add_note_ok_func() {
 
         // make description field empty when creation of new note done!
         document.getElementById('new_note_desc').value = '';
-
+    }
+    else {
+        note_status_style(1, 'red', 'you must add the title at least');
     }
 
     // make the form close after 1s if multy note seting is on
