@@ -355,6 +355,7 @@ function add_notes_to_list() {
         if (note.is_done == true) {
             note_title_ss[index].style.textDecoration = 'line-through';
         }
+        // new_div.style.transform = 'translateX(0)';
     });
 
 }
@@ -662,7 +663,7 @@ multy_notes_ckecker.onclick = multy_note_push;
 // reset the default settings
 // mean reset all option to first state 
 function rest_default_option_func() {
-    body.style.backgroundImage = `url(../images/back1.jpg)`
+    body.style.backgroundImage = `url(../images/back1.jpg)`;
     multy_notes_ckecker.checked = 'true';
     document.getElementById('back_url_inp').value = '';
     options.reset_defaul_options();
@@ -676,6 +677,7 @@ reset_defaul_btn.onclick = rest_default_option_func;
 
 
 // ###########################################################
+
 
 
 

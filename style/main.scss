@@ -270,15 +270,24 @@ footer{
     }
 
 }
+@keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100vh);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
 .widget_content{
     height: 400px;
     overflow-y: scroll;
     overflow-x: hidden;
     .note_item{
+        animation: slideInFromLeft 0.8s;
         transition: 0.7s ;
         
-        // transform: translate();
-        max-height: 100px;
+        // transform: translateX(-100vh);
+        max-height: 500px;
         padding: 20px;
         display: flex;
         flex-direction: column;

@@ -267,6 +267,28 @@ footer #clear_all:hover {
   color: white;
 }
 
+@-webkit-keyframes slideInFromLeft {
+  0% {
+    -webkit-transform: translateX(-100vh);
+            transform: translateX(-100vh);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    -webkit-transform: translateX(-100vh);
+            transform: translateX(-100vh);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
 .widget_content {
   height: 400px;
   overflow-y: scroll;
@@ -274,9 +296,11 @@ footer #clear_all:hover {
 }
 
 .widget_content .note_item {
+  -webkit-animation: slideInFromLeft 0.8s;
+          animation: slideInFromLeft 0.8s;
   -webkit-transition: 0.7s;
   transition: 0.7s;
-  max-height: 100px;
+  max-height: 500px;
   padding: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
