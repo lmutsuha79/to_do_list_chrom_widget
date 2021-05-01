@@ -658,6 +658,27 @@ label:hover:before {
                 margin-top: 5px;
             }
         }
+        #blur_option{
+            #blur_option_form{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                padding: 10px 0px;
+            }
+            label{
+                font-size: 12px;
+            }
+            .check_option_blur_li{
+                display: flex;
+                width: 100%;
+                p{
+                    &:nth-child(1){
+                        margin-right: 20px;
+                    }
+                }
+            }
+        }
 
 
      }

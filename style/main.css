@@ -671,6 +671,38 @@ label:hover:before {
   margin-top: 5px;
 }
 
+.option_form .option_content #blur_option #blur_option_form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 10px 0px;
+}
+
+.option_form .option_content #blur_option label {
+  font-size: 12px;
+}
+
+.option_form .option_content #blur_option .check_option_blur_li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+.option_form .option_content #blur_option .check_option_blur_li p:nth-child(1) {
+  margin-right: 20px;
+}
+
 .option_form footer {
   text-align: center;
 }

@@ -607,7 +607,7 @@ option_show_more_btns.forEach((btn, index) => {
     btn.onclick = function () {
         if (option_more_option[index] == 0) {
             option_show_more_btns[index].style.transform = 'rotate(180deg)'
-            hidden_part_all[index].style.maxHeight = '120px';
+            hidden_part_all[index].style.maxHeight = '200px';
             option_more_option[index] = 1;
         } else {
             option_show_more_btns[index].style.transform = 'none'
