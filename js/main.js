@@ -1,4 +1,5 @@
 var body = document.querySelector('body');
+var widget = document.getElementById('widget');
 // var multy_note;
 
 
@@ -10,12 +11,13 @@ var body = document.querySelector('body');
 var options = {
     background: `url(../images/back1.jpg)`,
     push_multy_note: 1,
+    blur_value: 1,
     reset_defaul_options() {
         this.background = `url(../images/back1.jpg)`;
         this.push_multy_note = 1;
+        this.blur_value = 1;
     },
 }
-console.log(options)
 
 if (localStorage.length === 0) {
     // no local storage so:
@@ -31,6 +33,8 @@ else {
 
     options.background = local_storage_options.background;
     options.push_multy_note = local_storage_options.push_multy_note;
+    options.blur_value = local_storage_options.blur_value;
+    console.log(local_storage_options.blur_value)
 
 }
 first_style();
@@ -678,8 +682,24 @@ reset_defaul_btn.onclick = rest_default_option_func;
 
 
 // ###########################################################
+// change blur and blur_chack_box when load :
+let blur_range_cursor = document.getElementById('blur_range');
+blur_range_cursor.oninput = blur_update;
+function blur_update() {
+    widget.style.backdropFilter = `blur(${blur_range_cursor.value}px)`;
+    options.blur_value = blur_range_cursor.value;
+    local_storage_options_update();
+    document.getElementById('blur_value_text').textContent = `blur: ${options.blur_value}px`
+
+}
+blur_range_cursor.value = options.blur_value;
+widget.style.backdropFilter = `blur(${options.blur_value}px)`;
+document.getElementById('blur_value_text').textContent = `blur: ${options.blur_value}px`
 
 
+
+
+// ###########################################################
 
 
 // option end
