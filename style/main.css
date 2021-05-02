@@ -17,7 +17,7 @@ input[type=range]::-webkit-slider-runnable-track {
   animate: 0.2s;
   -webkit-box-shadow: 1px 1px 1px #000000;
           box-shadow: 1px 1px 1px #000000;
-  background: #3071A9;
+  background: #ffffff;
   border-radius: 5px;
   border: 1px solid #000000;
 }
@@ -29,14 +29,14 @@ input[type=range]::-webkit-slider-thumb {
   height: 30px;
   width: 15px;
   border-radius: 5px;
-  background: #FFFFFF;
+  background: #CCCCCC;
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -11px;
 }
 
 input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #3071A9;
+  background: #ffffff;
 }
 
 input[type=range]::-moz-range-track {
@@ -45,7 +45,7 @@ input[type=range]::-moz-range-track {
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 1px 1px 1px #000000;
-  background: #3071A9;
+  background: #ffffff;
   border-radius: 5px;
   border: 1px solid #000000;
 }
@@ -56,7 +56,7 @@ input[type=range]::-moz-range-thumb {
   height: 30px;
   width: 15px;
   border-radius: 5px;
-  background: #FFFFFF;
+  background: #CCCCCC;
   cursor: pointer;
 }
 
@@ -71,14 +71,14 @@ input[type=range]::-ms-track {
 }
 
 input[type=range]::-ms-fill-lower {
-  background: #3071A9;
+  background: #ffffff;
   border: 1px solid #000000;
   border-radius: 10px;
   box-shadow: 1px 1px 1px #000000;
 }
 
 input[type=range]::-ms-fill-upper {
-  background: #3071A9;
+  background: #ffffff;
   border: 1px solid #000000;
   border-radius: 10px;
   box-shadow: 1px 1px 1px #000000;
@@ -91,16 +91,16 @@ input[type=range]::-ms-thumb {
   height: 30px;
   width: 15px;
   border-radius: 5px;
-  background: #FFFFFF;
+  background: #CCCCCC;
   cursor: pointer;
 }
 
 input[type=range]:focus::-ms-fill-lower {
-  background: #3071A9;
+  background: #ffffff;
 }
 
 input[type=range]:focus::-ms-fill-upper {
-  background: #3071A9;
+  background: #ffffff;
 }
 
 .icon {
