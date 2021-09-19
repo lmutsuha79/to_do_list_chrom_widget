@@ -1,10 +1,8 @@
 # To-do-widget
 
 
+download widget link: [Download Now](https://github.com/lamani79/to_do_list_chrom_widget/archive/refs/heads/main.zip) notes: make sure that you activate the developer mode in the browser in order to install the extension. check the video to preview animation and other features Video for preview:
 
-
-download widget   link: [Download Now](https://github.com/lamani79/to_do_list_chrom_widget/archive/refs/heads/main.zip)
-note: make sure that you activate the developer mode in browser in order to install the extention.
 check the video to privew animation and other features
 Video for prewiew:
 [![click hear](https://www.seoclerk.com/pics/want65476-15rA0B1540491950.jpg)](https://drive.google.com/file/d/1moDC_fiK4CXWqAXVPcYdoVACUC-gUqGi/view?usp=sharing)
